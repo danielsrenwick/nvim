@@ -1,5 +1,4 @@
 return require("packer").startup(function(use)
-    -- Packer can manage itself
     use "wbthomason/packer.nvim"
 
     use { "catppuccin/nvim", as = "catppuccin" }
@@ -24,14 +23,21 @@ return require("packer").startup(function(use)
         cmd = "Neogit",
     }
 
-    use "MunifTanjim/nui.nvim"
-    use "nvim-tree/nvim-web-devicons"
-    use "nvim-neo-tree/neo-tree.nvim"
+    use {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        }
+    }
 
     use "nvim-lualine/lualine.nvim"
 
     use {
         'VonHeikemen/lsp-zero.nvim',
+        after = "nvim-treesitter",
         requires = {
             { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
@@ -84,5 +90,16 @@ return require("packer").startup(function(use)
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
         config = function() require("trouble").setup {} end,
+    }
+
+    use {
+        'numToStr/Comment.nvim',
+        config = function() require('Comment').setup {} end,
+    }
+
+    use {
+        "kylechui/nvim-surround",
+        tag = "*",
+        config = function() require("nvim-surround").setup {} end,
     }
 end)
