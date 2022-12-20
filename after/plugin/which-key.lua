@@ -1,8 +1,8 @@
 local ok, whichkey = pcall(require, "which-key")
 
-if not ok then return end
-
-local nnoremap = require("config.keymap").nnoremap
+if not ok then
+    return
+end
 
 local conf = {
     window = {
@@ -24,6 +24,7 @@ local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
     ["e"] = { "<cmd>NeoTreeShowToggle<cr>", "Explorer" },
+    ["u"] = { "<cmd>UndotreeToggle<cr>", "Undotree" },
 
     b = {
         name = "Buffer",
@@ -59,6 +60,14 @@ local mappings = {
         g = { "<cmd>Telescope git_files<cr>", "Git Repo" },
         r = { "<cmd>Telescope oldfiles<cr>", "Recent Files", },
     },
+
+    l = {
+        name = "LSP",
+        f = { "<cmd>LspZeroFormat<cr>", "Format" },
+        a = { "<cmd>LspZeroWorkspaceAdd<cr>", "Add to Workspace" },
+        r = { "<cmd>LspZeroWorkspaceRemove<cr>", "Remove from Workspace" },
+        l = { "<cmd>LspZeroWorkspaceList<cr>", "List Workspace" },
+    }
 }
 
 whichkey.setup(conf)

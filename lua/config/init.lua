@@ -1,3 +1,4 @@
+require("gitsigns").setup()
 require("config.packer")
 require("config.remaps")
 require("config.set")
